@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: great_adventure_d
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: belle-fille
+Implementation-Vendor-Id: cn.xiaoandx
+Build-Jdk: 1.8.0_101
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/great_adventure_d
+Created-By: Maven Integration for Eclipse
+
