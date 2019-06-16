@@ -1,6 +1,7 @@
 package cn.xiaoandx.user.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -113,6 +114,18 @@ public class UserController implements Parameter {
 			return userService.findDealByUserId(user_id);
 		}
 		throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "Input parameter error");
+	}
+	
+	/**
+	 *<p>获取七牛云上传图片的凭证token</p> 
+	 * @Title: getToken    
+	 * @version:V0.1     
+	 * @return:Map<String,String>	返回tokenjson字符串
+	 */
+	@GetMapping(value = "/getToken")
+	@ApiOperation(httpMethod = "GET", value = "获取七牛云上传文件token凭证", notes = "返回前端含有token属性的json字符串<b>@autho xiaox.周巍</b>")
+	public Map<String, String> getToken() {
+		return userService.getToken();
 	}
 
 	/**

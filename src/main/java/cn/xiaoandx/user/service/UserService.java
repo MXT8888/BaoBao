@@ -1,11 +1,15 @@
 package cn.xiaoandx.user.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.qiniu.util.Auth;
 
 import cn.xiaoandx.commons.core.DaoCode;
 import cn.xiaoandx.commons.core.Parameter;
@@ -150,6 +154,29 @@ public class UserService implements DaoCode, Parameter {
 	 */
 	public List<Deal> findDealByUserId(Integer userId) {
 		return userDao.findDealByUserId(userId);
+	}
+	
+	/**
+	 * <p>
+	 * 获取七牛云上传token凭证
+	 * </p>
+	 * 
+	 * @Title: getToken
+	 * @version:V0.1
+	 * @return:Map<String,String>
+	 */
+	public Map<String, String> getToken() {
+		String upToken = null;
+		try {
+			Auth auth = Auth.create(accessKey, secretKey);
+			upToken = auth.uploadToken(bucket);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new CommonException(PublicErrorCode.OPERATION_EXCEPTION.getIntValue(), "获取token异常");
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("uptoken", upToken);
+		return map;
 	}
 	
 	/**
