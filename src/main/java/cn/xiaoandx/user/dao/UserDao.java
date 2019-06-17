@@ -25,6 +25,7 @@ import cn.xiaoandx.user.entity.Deal;
 import cn.xiaoandx.user.entity.Partner;
 import cn.xiaoandx.user.entity.Task;
 import cn.xiaoandx.user.entity.User;
+import cn.xiaoandx.user.vo.DealPageSaVO;
 import cn.xiaoandx.user.vo.PartnerList;
 import cn.xiaoandx.user.vo.PartnerVO;
 import cn.xiaoandx.user.vo.TaskVO;
@@ -189,11 +190,12 @@ public class UserDao {
 	 * @version:V0.1     
 	 * @param userId
 	 * @return:List<Deal>
+	 
+				+ "and  time BETWEEN DATE_SUB(now(),INTERVAL 6 month) AND now();";
 	 */
 	public List<Deal> findDealByUserId(Integer userId) {
 		RowMapper<Deal> rowMapper = new BeanPropertyRowMapper<Deal>(Deal.class);
-		String optionSql = "select * from deal WHERE user_id = ? "
-				+ "and  time BETWEEN DATE_SUB(now(),INTERVAL 6 month) AND now();";
+		String optionSql = "select * from deal WHERE user_id = ? ";
 		return jdbcTemplate.query(optionSql, rowMapper,userId);
 	}
 	
@@ -413,5 +415,39 @@ public class UserDao {
 	public int updateByTaskId(int task_id) {
 		String sql = "UPDATE task SET partner = partner + 1 WHERE task_id = ?";
 		return jdbcTemplate.update(sql,task_id);
+	}
+
+	/**  
+	 *<p>查询xx用户的所有交易记录数</p> 
+	 * @Title: findByUserIdCount    
+	 * @version:V0.1     
+	 * @param userId
+	 * @return:Integer
+	 */
+	public DealPageSaVO findByUserIdCount(Long userId) {
+		RowMapper<DealPageSaVO> rowMapper = new BeanPropertyRowMapper<DealPageSaVO>(DealPageSaVO.class);
+		String sql = "SELECT COUNT(*) as pageCount FROM deal WHERE user_id = ?";
+		return jdbcTemplate.queryForObject(sql, rowMapper, userId);
+	}
+
+	/**  
+	 *<p>查询具体的分页数据</p> 
+	 * @Title: finDealById    
+	 * @version:V0.1     
+	 * @param userId
+	 * @param currentPage
+	 * @param pageSize
+	 * @return    
+	 * @return:List<Deal>
+	 */
+	public List<Deal> finDealById(Long userId, Integer currentPage, Integer pageSize) {
+		RowMapper<Deal> rowMapper = new BeanPropertyRowMapper<Deal>(Deal.class);
+		int currentPageo = (currentPage - 1) * pageSize;
+		try {
+			String sql = "SELECT deal_id,user_id,content,sum,time FROM deal WHERE user_id = ? ORDER BY `time` DESC LIMIT ?, ?";
+			return jdbcTemplate.query(sql, rowMapper, userId, currentPageo, pageSize);
+		} catch (DataAccessException e) {
+			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "user OR currentPage OR pageSize error");
+		}
 	}
 }
