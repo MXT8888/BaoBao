@@ -61,7 +61,7 @@ public class ParticipantController implements Parameter{
 			if(null != partnerVO.getImage_url() && null != partnerVO.getNote() && NO_ZIFUCUAN != partnerVO.getImage_url()) {
 				return participantService.addPartner(partnerVO);
 			}
-			return new OperationalStatusVO(40040, "image_url or Note is null");
+			return new OperationalStatusVO(40040, "image_url or note is null");
 		}
 		return new OperationalStatusVO(40040, "user_id or task_id is 0");
 	}

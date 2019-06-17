@@ -134,7 +134,7 @@ public class UserController implements Parameter {
 	 * @return
 	 */
 	@GetMapping(value = "/getTasksPublished/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "查询发布累计数", notes = "查询“发布过的任务”界面的总任务数，总金额数，总红包数<br><br>@athor 董泽东<b></b>")
+	@ApiOperation(httpMethod = "GET", value = "任务记录 查询发布累计数", notes = "任务记录 查询“发布过的任务”界面的总任务数，总金额数，总红包数<br><br>@athor 董泽东<b></b>")
 	public TotalTasks getTasksPublished(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
 		if (userId == null) {
@@ -149,7 +149,7 @@ public class UserController implements Parameter {
 	 * @return
 	 */
 	@GetMapping(value = "/getTask/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "查询该用户发布的所有任务", notes = "查询该用户所有发布的任务<br><br>@athor 董泽东<b></b>")
+	@ApiOperation(httpMethod = "GET", value = "任务记录 查询该用户发布的所有任务", notes = "任务记录 查询该用户所有发布的任务<br><br>@athor 董泽东<b></b>")
 	public List<Task> getTask(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
 		if (userId == null) {
@@ -166,7 +166,7 @@ public class UserController implements Parameter {
 	 * @return
 	 */
 	@GetMapping(value = "/getPartner/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "查询做过任务统计", notes = "查询“做过的任务”界面的总任务数，总领取金额数，总领取红包数<br><br>@athor 董泽东<b></b>")
+	@ApiOperation(httpMethod = "GET", value = "任务记录 查询做过任务统计", notes = "任务记录  查询“做过的任务”界面的总任务数，总领取金额数，总领取红包数<br><br>@athor 董泽东<b></b>")
 	public TotalTasks getPartner(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
 		if (userId == null) {
@@ -181,7 +181,7 @@ public class UserController implements Parameter {
 	 * @return
 	 */
 	@GetMapping(value = "/getPartnerList/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "查询该用户做过的所有任务", notes = "查询该用户所有做过的任务<br><br>@athor 董泽东<b></b>")
+	@ApiOperation(httpMethod = "GET", value = "任务记录 查询该用户做过的所有任务", notes = "任务记录 查询该用户所有做过的任务<br><br>@athor 董泽东<b></b>")
 	public List<Partner> getPartnerList(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
 		if (userId == null) {
@@ -196,7 +196,7 @@ public class UserController implements Parameter {
 	 * @return
 	 */
 	@PostMapping(value = "/getOneTask/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "POST", value = "查询某一个任务详细信息", notes = "查询某一个任务详细信息<br><br>@athor 董泽东<b></b>")
+	@ApiOperation(httpMethod = "POST", value = "任务记录 查询某一个任务详细信息", notes = "任务记录 查询某一个任务详细信息<br><br>@athor 董泽东<b></b>")
 	public Task getOneTask(@ApiParam(value = "任务Id", required = true)  @PathVariable Long taskId) {
 		return userService.getOneTask(taskId);
 	}
@@ -207,7 +207,7 @@ public class UserController implements Parameter {
 	 * @return
 	 */
 	@GetMapping(value = "/getPartnerExamine/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "查询任务下的所有参与者", notes = "查询任务下的所有参与者<br><br>@athor 董泽东<b></b>")
+	@ApiOperation(httpMethod = "GET", value = "审核界面 查询任务下的所有参与者", notes = "审核界面 查询任务下的所有参与者<br><br>@athor 董泽东<b></b>")
 	public List<PartnerList> getPartnerExamine(@ApiParam(value = "任务Id", required = true)  @PathVariable Long taskId){
 		return userService.getPartnerExamine(taskId);
 	}

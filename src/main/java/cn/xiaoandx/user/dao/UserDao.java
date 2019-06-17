@@ -169,6 +169,18 @@ public class UserDao {
 			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "user_id Non-existent - select userTable overage error");
 		}
 	}
+	public User findUserByIds(Long user_id) {
+		RowMapper<User> rowMapper=new BeanPropertyRowMapper<User>(User.class);
+		String sql = "SELECT u.`user_id`,u.`overage` "
+				+ "FROM `user` AS u "
+				+ "WHERE u.`user_id` = ?";
+		try {
+			return jdbcTemplate.queryForObject(sql, rowMapper, user_id);
+		} catch (DataAccessException e) {
+			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "user_id Non-existent - select userTable overage error");
+		}
+	}
+	
 	
 	/**  
 	 * 
