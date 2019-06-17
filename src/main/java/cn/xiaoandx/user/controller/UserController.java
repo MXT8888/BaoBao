@@ -99,7 +99,7 @@ public class UserController implements Parameter {
 
 	/**
 	 * 
- 	 *<p>查询某个用户距离当前现在6个月交易记录</p> 
+ 	 *<p>查询某个用户所有交易记录</p> 
 	 * @Title: get    
 	 * @version:V1.0     
 	 * @param userId		用户Id

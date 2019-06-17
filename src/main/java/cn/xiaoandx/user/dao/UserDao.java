@@ -190,12 +190,10 @@ public class UserDao {
 	 * @version:V0.1     
 	 * @param userId
 	 * @return:List<Deal>
-	 
-				+ "and  time BETWEEN DATE_SUB(now(),INTERVAL 6 month) AND now();";
 	 */
 	public List<Deal> findDealByUserId(Integer userId) {
 		RowMapper<Deal> rowMapper = new BeanPropertyRowMapper<Deal>(Deal.class);
-		String optionSql = "select * from deal WHERE user_id = ? ";
+		String optionSql = "select `deal_id`,`user_id`,`content`,`sum`,`time` from deal WHERE user_id = ? ";
 		return jdbcTemplate.query(optionSql, rowMapper,userId);
 	}
 	
