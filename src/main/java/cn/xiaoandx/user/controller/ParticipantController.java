@@ -42,7 +42,7 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("/v1/open/participant")
 @RestController
 @Api(tags = "参与者模块操作API")
-public class ParticipantController implements Parameter{
+public class ParticipantController implements Parameter{ 
 	
 	@Autowired
 	private ParticipantService participantService;

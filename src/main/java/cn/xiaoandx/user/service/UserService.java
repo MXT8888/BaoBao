@@ -23,6 +23,8 @@ import cn.xiaoandx.user.entity.Deal;
 import cn.xiaoandx.user.entity.Partner;
 import cn.xiaoandx.user.entity.Task;
 import cn.xiaoandx.user.entity.User;
+import cn.xiaoandx.user.vo.DealPageSaVO;
+import cn.xiaoandx.user.vo.DealPageVO;
 import cn.xiaoandx.user.vo.OperationalStatusVO;
 import cn.xiaoandx.user.vo.PartnerList;
 import cn.xiaoandx.user.vo.TaskVO;
@@ -344,5 +346,27 @@ public class UserService implements DaoCode, Parameter {
 		}
 		return userDao.getPartnerTaskt(userId, taskId);
 	}
-	
+
+	/**  
+	 *<p>查询xx用户第几页的交易记录</p> 
+	 * @Title: findDealByUserIdPage    
+	 * @version:V0.1     
+	 * @param dealPageVO
+	 * @return:DealPageSaVO
+	 */
+	public DealPageSaVO findDealByUserIdPage(DealPageVO dealPageVO) {
+		DealPageSaVO dpv = new DealPageSaVO();
+		int pageCount;
+		int number = userDao.findByUserIdCount(dealPageVO.getUserId()).getPageCount();
+		if (number / dealPageVO.getPageSize() == SROCE_NUMBER) {
+			pageCount = number / dealPageVO.getPageSize();
+		} else {
+			pageCount = (number / dealPageVO.getPageSize()) + 1;
+		}
+		dpv.setPageCount(pageCount);
+		dpv.setNewcurrentPage(dealPageVO.getCurrentPage());
+		dpv.setDealList(
+				userDao.finDealById(dealPageVO.getUserId(), dealPageVO.getCurrentPage(), dealPageVO.getPageSize()));
+		return dpv;
+	}
 }

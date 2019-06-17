@@ -21,6 +21,8 @@ import cn.xiaoandx.user.entity.Partner;
 import cn.xiaoandx.user.entity.Task;
 import cn.xiaoandx.user.entity.User;
 import cn.xiaoandx.user.service.UserService;
+import cn.xiaoandx.user.vo.DealPageSaVO;
+import cn.xiaoandx.user.vo.DealPageVO;
 import cn.xiaoandx.user.vo.OperationalStatusVO;
 import cn.xiaoandx.user.vo.PartnerList;
 import cn.xiaoandx.user.vo.TaskVO;
@@ -94,7 +96,7 @@ public class UserController implements Parameter {
 		}
 		throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "Input parameter error");
 	}
-	
+
 	/**
 	 * 
  	 *<p>查询某个用户距离当前现在6个月交易记录</p> 
@@ -114,6 +116,25 @@ public class UserController implements Parameter {
 			return userService.findDealByUserId(user_id);
 		}
 		throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "Input parameter error");
+	}
+	
+	/**
+	 *<p>查询xx用户第几页的交易记录</p> 
+	 * @Title: findDealByUserIdPage    
+	 * @version:V0.1     
+	 * @param dealPageVO	分页数据
+	 * @return:DealPageSaVO	数据集合
+	 */
+	@PostMapping(value = "/findDealByUserIdPage", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(httpMethod = "POST", value = "查询xx用户第几页的交易记录", notes = "提交一个带有用户id+第几页+每页的数据量的对象"
+    		+ "<br>查询成功后，返回数据集合对象，失败返回异常<br><b>@autho xiaox.周巍</b>")
+	public DealPageSaVO findDealByUserIdPage(@ApiParam(value = "查询对象信息*必填",required = true)@RequestBody DealPageVO dealPageVO){
+		if(null == dealPageVO.getUserId() || null == dealPageVO.getCurrentPage() ||
+				null == dealPageVO.getPageSize() || dealPageVO.getCurrentPage() < 1 ||
+						dealPageVO.getPageSize() < 1) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "Input dealPageVO error");
+		}
+		return userService.findDealByUserIdPage(dealPageVO);
 	}
 	
 	/**
