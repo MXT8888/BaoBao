@@ -115,21 +115,28 @@ public class UserService implements DaoCode, Parameter {
 	 * @return:OperationalStatusVO 任务状态
 	 */
 	public OperationalStatusVO addTask(TaskVO taskVO) {
-		int task_id = userDao.addAndGetId(taskVO);
-		if (ERROR != task_id) {
-			if (ERROR != userDao.updateRed(taskVO.getTotal_bounty(), taskVO.getUser_id(), ENTER_NUMBER)) {
-				if (ENTER_NUMBER != taskVO.getTotal_bounty()) {
-					if (ERROR != userDao.addDealByUserId(taskVO.getUser_id(),
-							(taskVO.getTotal_bounty() != DOUBLE_NUMBER ? RELEASE_TASK : UNPAID_ERROR),
-							-(taskVO.getTotal_bounty()))) {
-						return new OperationalStatusVO(task_id, "success , Above attributes is task_id");
+		User newUser = userDao.findUserByIds(taskVO.getUser_id());
+		if(newUser.getOverage() >= taskVO.getTotal_bounty()) {
+			int task_id = userDao.addAndGetId(taskVO);
+			if (ERROR != task_id) {
+				
+				if (ERROR != userDao.updateRed(taskVO.getTotal_bounty(), taskVO.getUser_id(), ENTER_NUMBER)) {
+					if (ENTER_NUMBER != taskVO.getTotal_bounty()) {
+						
+						
+						if (ERROR != userDao.addDealByUserId(taskVO.getUser_id(),
+								(taskVO.getTotal_bounty() != DOUBLE_NUMBER ? RELEASE_TASK : UNPAID_ERROR),
+								-(taskVO.getTotal_bounty()))) {
+							return new OperationalStatusVO(task_id, "success , Above attributes is task_id");
+						}
 					}
+					throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "无金额");
 				}
-				throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "无金额");
+				return new OperationalStatusVO(40040, "error");
 			}
 			return new OperationalStatusVO(40040, "error");
 		}
-		return new OperationalStatusVO(40040, "error");
+		return new OperationalStatusVO(40040, "error -- Sorry, your credit is running low");
 	}
 	
 	/**
