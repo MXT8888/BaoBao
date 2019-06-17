@@ -41,6 +41,7 @@ public class GreatAdventureWebApp extends SpringBootServletInitializer  {
 	}
 	
 	/**   
+	 *
 	 * <p>Title: configure</p>   
 	 * <p>Description: </p>   
 	 * @param builder
