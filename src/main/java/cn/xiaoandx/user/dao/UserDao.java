@@ -185,7 +185,7 @@ public class UserDao {
 	
 	/**  
 	 * 
-	 *<p>根据用户userId查询某个用户距离当前现在6个月交易记录</p> 
+	 *<p>根据用户userId查询某个用户所有交易记录</p> 
 	 * @Title: findDealByUserID    
 	 * @version:V0.1     
 	 * @param userId
@@ -193,7 +193,7 @@ public class UserDao {
 	 */
 	public List<Deal> findDealByUserId(Integer userId) {
 		RowMapper<Deal> rowMapper = new BeanPropertyRowMapper<Deal>(Deal.class);
-		String optionSql = "select `deal_id`,`user_id`,`content`,`sum`,`time` from deal WHERE user_id = ? ";
+		String optionSql = "select `deal_id`,`user_id`,`content`,`sum`,`time` from deal WHERE user_id = ? ORDER BY time DESC";
 		return jdbcTemplate.query(optionSql, rowMapper,userId);
 	}
 	
