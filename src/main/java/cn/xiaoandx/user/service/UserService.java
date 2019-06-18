@@ -124,8 +124,6 @@ public class UserService implements DaoCode, Parameter {
 				
 				if (ERROR != userDao.updateRed(taskVO.getTotal_bounty(), taskVO.getUser_id(), ENTER_NUMBER)) {
 					if (ENTER_NUMBER != taskVO.getTotal_bounty()) {
-						
-						
 						if (ERROR != userDao.addDealByUserId(taskVO.getUser_id(),
 								(taskVO.getTotal_bounty() != DOUBLE_NUMBER ? RELEASE_TASK : UNPAID_ERROR),
 								-(taskVO.getTotal_bounty()))) {

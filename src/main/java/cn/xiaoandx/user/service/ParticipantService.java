@@ -52,14 +52,13 @@ public class ParticipantService implements DaoCode, Parameter {
 	 * @return:OperationalStatusVO	操作状态
 	 */
 	public OperationalStatusVO addPartner(PartnerVO partnerVO) {
-		// TODO Auto-generated method stub
-		//1.向参与记录表插入一条数据
-		int codeNumber = userDao.addPartner(partnerVO, DEFAULT_STA, DOUBLE_NUMBER);
-		if(ERROR == codeNumber) {
-			return new OperationalStatusVO(40040, "add partnerTable error");
-		}
 		Task taskNew = userDao.findTaskByTaskId(partnerVO.getTask_id());
 		if(ENTER_NUMBER != ( taskNew.getTotal_partner() - taskNew.getPartner() )) {
+			//1.向参与记录表插入一条数据
+			int codeNumber = userDao.addPartner(partnerVO, DEFAULT_STA, DOUBLE_NUMBER);
+			if(ERROR == codeNumber) {
+				return new OperationalStatusVO(40040, "add partnerTable error");
+			}
 			int codeNumberT = userDao.updateByTaskId(partnerVO.getTask_id());
 			if(ERROR != codeNumberT) {
 				return new OperationalStatusVO(200, "Participation in mission success");
