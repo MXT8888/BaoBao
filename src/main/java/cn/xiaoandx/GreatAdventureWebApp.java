@@ -22,7 +22,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 /**  
  * <p>examinationv3项目启动</p> 
  * @ClassName:ExamV3WebApp   
@@ -41,7 +40,6 @@ public class GreatAdventureWebApp extends SpringBootServletInitializer  {
 	}
 	
 	/**   
-	 *
 	 * <p>Title: configure</p>   
 	 * <p>Description: </p>   
 	 * @param builder

@@ -151,6 +151,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param user_id 用户id
 	 * @return:User 返回的对象
 	 */
+	@Transactional(readOnly = true)
 	public User findUserById(int user_id) {
 		return userDao.findUserById(user_id);
 	}
@@ -161,6 +162,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param userId 用户ID
 	 * @return List<Deal> 交易记录实体
 	 */
+	@Transactional(readOnly = true)
 	public List<Deal> findDealByUserId(Integer userId) {
 		return userDao.findDealByUserId(userId);
 	}
@@ -193,6 +195,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param userId 用户Id
 	 * @return TasksPublished
 	 */
+	@Transactional(readOnly = true)
 	public TotalTasks getTasksPublished(Long userId) {
 		List<TotalTasks> list = userDao.getTotalTask(userId);
 		if(list.isEmpty()) {
@@ -205,6 +208,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param userId
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public List<Task> getTask(Long userId){
 		return userDao.getTaskList(userId);
 	}
@@ -214,6 +218,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param userId
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public TotalTasks getPartner(Long userId) {
 		List<TotalTasks> list = userDao.getTaskAndBounty(userId);
 		List<Integer> red = userDao.getRed(userId);
@@ -230,6 +235,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param userId
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public List<Partner> getPartnerList(Long userId){
 		return userDao.getPartnerList(userId);
 	}
@@ -239,6 +245,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param 任务Id
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public List<Partner> getPartnerTaskList(Long taskId){
 		return userDao.getPartnerTaskList(taskId);
 	}
@@ -340,6 +347,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param taskId
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public Partner Partner(Long userId,Long taskId){
 		if(userId==null || taskId == null) {
 			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "参数不能为空");
@@ -354,6 +362,7 @@ public class UserService implements DaoCode, Parameter {
 	 * @param dealPageVO
 	 * @return:DealPageSaVO
 	 */
+	@Transactional(readOnly = true)
 	public DealPageSaVO findDealByUserIdPage(DealPageVO dealPageVO) {
 		DealPageSaVO dpv = new DealPageSaVO();
 		int pageCount;
