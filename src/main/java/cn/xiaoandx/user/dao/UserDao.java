@@ -321,6 +321,16 @@ public class UserDao {
 		String sql = "UPDATE `task` SET bounty=?,red=red+1,`status`=? WHERE task_id =?";
 		jdbcTemplate.update(sql, new Object[] {bounty,status,taskId}, new int[] {Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
 	}
+	
+	/**
+	 * 修改任务表金额数据
+	 * @param bounty 余额
+	 * @param taskId 任务Id
+	 */
+	public void updateTaskMo(Double bounty,Long taskId,String status) {
+		String sql = "UPDATE `task` SET bounty=?,`status`=? WHERE task_id =?";
+		jdbcTemplate.update(sql, new Object[] {bounty,status,taskId}, new int[] {Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
+	}
 	 
 	 /***
 	  * 参与者的总余额修改

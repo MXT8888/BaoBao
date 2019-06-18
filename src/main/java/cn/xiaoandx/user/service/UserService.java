@@ -260,7 +260,7 @@ public class UserService implements DaoCode, Parameter {
 			//修改用户金额
 			userDao.updateUser(task.getUser_id(),task.getBounty());
 			//修改任务表金额
-			userDao.updateTask(0.00, taskId, TASK_END);
+			userDao.updateTaskMo(0.00, taskId, TASK_END);
 		}
 		return task;
 	}
@@ -289,7 +289,7 @@ public class UserService implements DaoCode, Parameter {
 	//			if(redNumber == task.getTotal_red()) {
 	//				return null;
 	//			}
-				
+				System.out.println(surplus);
 				//如果还剩下最后一个红包
 				if(surplus==1) {
 					//修改参与者数据
@@ -302,7 +302,7 @@ public class UserService implements DaoCode, Parameter {
 					//插入参与者交易数据
 					userDao.insertDeal(new Deal(null,partner.getUser_id(),PARTICIPATE_TASK,bounty,IdAndTimeUtil.getNewDate()));
 					//插入发布者交易数据
-					userDao.insertDeal(new Deal(null,task.getUser_id(),RELEASE_TASK,-task.getTotal_bounty(),IdAndTimeUtil.getNewDate()));
+					//userDao.insertDeal(new Deal(null,task.getUser_id(),RELEASE_TASK,-task.getTotal_bounty(),IdAndTimeUtil.getNewDate()));
 					return bounty;
 				}
 				
