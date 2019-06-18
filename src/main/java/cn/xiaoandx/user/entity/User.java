@@ -24,7 +24,7 @@ public class User {
 	private Double overage;
 	
 	@ApiModelProperty(value="昵称")
-	private String nick_name;
+	private String nickname;
 	
 	@ApiModelProperty(value="头像")
 	private String head_portrait;
