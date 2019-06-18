@@ -26,56 +26,56 @@ package cn.xiaoandx.commons.core;
  */
 public interface DaoCode {
 	
-	/*
+	/**
 	 * 数据库操作成功
 	 */
 	Integer SUCCESS = 1;
-	/*
+	/**
 	 * 数据库操作失败
 	 */
 	Integer ERROR = 0;
-	/*
+	/**
 	 * 判断用户总成绩
 	 */
 	Integer SROCE_NUMBER = 0;
-	/*
+	/**
 	 * 用户id为0
 	 */
 	Integer ZEROUSERID = 0;
 	
 	/////////金额交易类型(3种)//////
-	/*
+	/**
 	 * 赠送金额
 	 */
 	String INITIALIZATION = "赠送金额";
 	//默认赠送的金额数
 	double  DEFAULT_MONEY = 200.00;
 	
-	/*
+	/**
 	 * 发布任务
 	 */
 	String RELEASE_TASK = "发布任务";
 	
-	/*
+	/**
 	 * 完成任务
 	 */
 	String PARTICIPATE_TASK = "完成任务";
 	
-	/*
+	/**
 	 * 任务余额
 	 */
 	String MISSION_BALANCE = "任务余额";
 	
 	////////任务状态//////////
-	/*
+	/**
 	 * 发布成功
 	 */
 	String RELEASE_OK = "发布成功";
-	/*
+	/**
 	 * 未支付
 	 */
 	String UNPAID_ERROR = "未支付";
-	/*
+	/**
 	 * 已结束
 	 */
 	String TASK_END = "已结束";
@@ -86,11 +86,11 @@ public interface DaoCode {
 	String OK_STA = "通过";
 	
 	String NO_STA = "未通过";
-	/*
+	/**
 	 * 参与内容公开
 	 */
 	int YES_PUBLIC = 0;
-	/*
+	/**
 	 * 参与内容不公开
 	 */
 	int NO_PUBLIC = 1;

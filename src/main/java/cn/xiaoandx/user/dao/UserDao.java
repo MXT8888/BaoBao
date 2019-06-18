@@ -458,4 +458,23 @@ public class UserDao {
 			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "user OR currentPage OR pageSize error");
 		}
 	}
+
+	/**  
+	 *<p>根据userId+taskId</p> 
+	 * @Title: findParByUserId    
+	 * @version:V0.1     
+	 * @param task_id	任务id
+	 * @param user_id	用户id
+	 * @return:List<Partner>	数据集合
+	 */
+	public List<Partner> findParByUserId(int task_id, int user_id) {
+		try {
+			RowMapper<Partner> rowMapper = new BeanPropertyRowMapper<Partner>(Partner.class);
+			String sql = "SELECT partner_id, user_id, task_id,`status` FROM partner WHERE task_id =?  AND user_id =?";
+			return jdbcTemplate.query(sql, rowMapper, task_id, user_id);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "user_id OR task_id OR Non-existent");
+		}
+	}
 }

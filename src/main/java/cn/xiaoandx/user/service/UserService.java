@@ -132,11 +132,11 @@ public class UserService implements DaoCode, Parameter {
 					}
 					throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "无金额");
 				}
-				return new OperationalStatusVO(40040, "error");
+				return new OperationalStatusVO(RESPOSE_ERROR, "error");
 			}
-			return new OperationalStatusVO(40040, "error");
+			return new OperationalStatusVO(RESPOSE_ERROR, "error");
 		}
-		return new OperationalStatusVO(40040, "error -- Sorry, your credit is running low");
+		return new OperationalStatusVO(RESPOSE_ERROR, "error -- Sorry, your credit is running low");
 	}
 	
 	/**

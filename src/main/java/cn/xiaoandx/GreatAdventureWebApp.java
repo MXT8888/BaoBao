@@ -20,8 +20,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 /**  
  * <p>examinationv3项目启动</p> 
  * @ClassName:ExamV3WebApp   
@@ -32,7 +30,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Copyright: 注意：本内容仅限于学习传阅，禁止外泄以及用于其他的商业目
  */
 @SpringBootApplication
-@EnableSwagger2
 public class GreatAdventureWebApp extends SpringBootServletInitializer  {
 
 	public static void main(String[] args) {

@@ -45,4 +45,12 @@ public interface Parameter {
 	 * 入参的值1
 	 */
 	int ONE_NUMBER = 1;
+	/**
+	 * 成功200200
+	 */
+	Integer RESPOSE_SUCCESS = 200200;
+	/**
+	 * 失败 400400
+	 */
+	Integer RESPOSE_ERROR = 400400;
 }
