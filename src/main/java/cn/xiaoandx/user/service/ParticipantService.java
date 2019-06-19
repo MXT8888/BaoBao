@@ -54,10 +54,9 @@ public class ParticipantService implements DaoCode, Parameter {
 	 * @param partnerVO		参与任务数据对象
 	 * @return:OperationalStatusVO	操作状态
 	 */
-	@SuppressWarnings("null")
 	public OperationalStatusVO addPartner(PartnerVO partnerVO) {
 		List<Partner> listPar = userDao.findParByUserId(partnerVO.getTask_id(), partnerVO.getUser_id());
-		if(null == listPar && ENTER_NUMBER == listPar.size()) {
+		if(listPar.size() ==  ENTER_NUMBER) {
 			Task taskNew = userDao.findTaskByTaskId(partnerVO.getTask_id());
 			if(ENTER_NUMBER != ( taskNew.getTotal_partner() - taskNew.getPartner() )) {
 				//1.向参与记录表插入一条数据
