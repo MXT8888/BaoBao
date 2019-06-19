@@ -307,29 +307,31 @@ public class UserDao {
 	 * @param bounty
 	 * @param time
 	 */
-	public void updatePartner(Long partnerId,String status,Double bounty,String time) {
+	public int updatePartner(Long partnerId,String status,Double bounty,String time) {
 		String sql = "UPDATE `partner` SET `status`=?,`bounty`=?,time = ? WHERE `partner_id`=?";
-		jdbcTemplate.update(sql, new Object[] {status,bounty,time,partnerId}, new int[] {Types.VARCHAR,Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
+		return jdbcTemplate.update(sql, new Object[] {status,bounty,time,partnerId}, new int[] {Types.VARCHAR,Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
 	}
 	
 	/**
 	 * 修改任务表数据
 	 * @param bounty 余额
 	 * @param taskId 任务Id
+	 * @return 
 	 */
-	public void updateTask(Double bounty,Long taskId,String status) {
+	public int updateTask(Double bounty,Long taskId,String status) {
 		String sql = "UPDATE `task` SET bounty=?,red=red+1,`status`=? WHERE task_id =?";
-		jdbcTemplate.update(sql, new Object[] {bounty,status,taskId}, new int[] {Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
+		return jdbcTemplate.update(sql, new Object[] {bounty,status,taskId}, new int[] {Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
 	}
 	
 	/**
 	 * 修改任务表金额数据
 	 * @param bounty 余额
 	 * @param taskId 任务Id
+	 * @return 
 	 */
-	public void updateTaskMo(Double bounty,Long taskId,String status) {
+	public int updateTaskMo(Double bounty,Long taskId,String status) {
 		String sql = "UPDATE `task` SET bounty=?,`status`=? WHERE task_id =?";
-		jdbcTemplate.update(sql, new Object[] {bounty,status,taskId}, new int[] {Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
+		return jdbcTemplate.update(sql, new Object[] {bounty,status,taskId}, new int[] {Types.DOUBLE,Types.VARCHAR,Types.BIGINT});
 	}
 	 
 	 /***
@@ -337,18 +339,18 @@ public class UserDao {
 	  * @param userId 用户id
 	  * @param overage 肮脏的金钱
 	  */
-	public void updateUser(Long userId,Double overage) {
+	public int updateUser(Long userId,Double overage) {
 		String sql = "UPDATE `user` SET overage=overage+? WHERE user_id=?";
-		jdbcTemplate.update(sql, new Object[] {overage,userId}, new int[] {Types.DOUBLE,Types.BIGINT});
+		return jdbcTemplate.update(sql, new Object[] {overage,userId}, new int[] {Types.DOUBLE,Types.BIGINT});
 	}
 	
 	/**
 	 * 交易记录表插入数据
 	 */
-	public void insertDeal(Deal deal) {
+	public int insertDeal(Deal deal) {
 		String sql = "INSERT INTO `deal` (`user_id`,`content`,`sum`,`time`) VALUES (?,?,?,?)";
-		jdbcTemplate.update(sql, new Object[] {deal.getUser_id(),deal.getContent(),deal.getSum(),deal.getTime()}, new int[] {Types.BIGINT,Types.VARCHAR,Types.DOUBLE
-				,Types.DATE});
+		return jdbcTemplate.update(sql, new Object[] {deal.getUser_id(),deal.getContent(),deal.getSum(),deal.getTime()}, new int[] {Types.BIGINT,Types.VARCHAR,Types.DOUBLE
+				,Types.TIMESTAMP});
 	}
 	
 	/**

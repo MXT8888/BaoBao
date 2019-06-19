@@ -276,60 +276,85 @@ public class UserService implements DaoCode, Parameter {
 			//获取当前参与者信息
 			Partner partner = userDao.getPartnerTaskt(examine.getUserId(), examine.getTaskId());
 			
-			if (examine.getStateCode().equals(OK_STA)) {
-				//当前余额
-				double bounty = task.getBounty();
-				
-				//当前已领红包数
-				int redNumber = task.getRed();
-				
-				//当前剩余红包
-				int surplus=task.getTotal_red()-redNumber;
-				//如果红包领完
-	//			if(redNumber == task.getTotal_red()) {
-	//				return null;
-	//			}
-				System.out.println(surplus);
-				//如果还剩下最后一个红包
-				if(surplus==1) {
-					//修改参与者数据
-					userDao.updatePartner(partner.getPartner_id(),OK_STA, bounty, String.valueOf(IdAndTimeUtil.getNewDate()));
-					//修改任务表数据
-					userDao.updateTask(0.00, examine.getTaskId(),TASK_END);
+			if(null != task  && null != partner) {
+				if (examine.getStateCode().equals(OK_STA)) {
+					//当前余额
+					double bounty = task.getBounty();
 					
-					//修改参与者用户表数据
-					userDao.updateUser(examine.getUserId(),bounty);
-					//插入参与者交易数据
-					userDao.insertDeal(new Deal(null,partner.getUser_id(),PARTICIPATE_TASK,bounty,IdAndTimeUtil.getNewDate()));
-					//插入发布者交易数据
-					//userDao.insertDeal(new Deal(null,task.getUser_id(),RELEASE_TASK,-task.getTotal_bounty(),IdAndTimeUtil.getNewDate()));
-					return bounty;
+					//当前已领红包数
+					int redNumber = task.getRed();
+					
+					//当前剩余红包
+					int surplus=task.getTotal_red()-redNumber;
+					//如果红包领完
+		//			if(redNumber == task.getTotal_red()) {
+		//				return null;
+		//			}
+					System.out.println(surplus);
+					//如果还剩下最后一个红包
+					if(surplus==1) {
+						//修改参与者数据
+						if(ERROR < userDao.updatePartner(partner.getPartner_id(),OK_STA, bounty, String.valueOf(IdAndTimeUtil.getNewDate()))) {
+							//修改任务表数据
+							if(ERROR < userDao.updateTask(0.00, examine.getTaskId(),TASK_END)) {
+								//修改参与者用户表数据
+								if(ERROR < userDao.updateUser(examine.getUserId(),bounty)) {
+									//插入参与者交易数据
+									if(ERROR < userDao.insertDeal(new Deal(null,partner.getUser_id(),PARTICIPATE_TASK,bounty,IdAndTimeUtil.getNewDate()))) {
+										//插入发布者交易数据
+										//userDao.insertDeal(new Deal(null,task.getUser_id(),RELEASE_TASK,-task.getTotal_bounty(),IdAndTimeUtil.getNewDate()));
+										return bounty;
+									}
+									throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update deal error");
+								}
+								throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update user error");
+							}
+							throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update task error");
+						}
+						
+						throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update partner error");
+					}
+					
+					//抽取红包
+					double red = RedUtils.getRed(bounty, surplus);
+					System.out.println(red);
+					bounty=bounty-red;
+					bounty = Double.valueOf(String.format("%.2f", bounty));
+					if(bounty >= SROCE_NUMBER) {
+						System.out.println("bounty "+bounty);
+						//修改参与者数据
+						if(ERROR < userDao.updatePartner(partner.getPartner_id(),OK_STA, red, String.valueOf(IdAndTimeUtil.getNewDate()))) {
+							//修改任务表数据
+							if(ERROR < userDao.updateTask(bounty, examine.getTaskId(),RELEASE_OK)) {
+								//修改参与者用户表数据
+								if(ERROR < userDao.updateUser(examine.getUserId(),red)) {
+									//插入参与者交易数据
+									if(ERROR < userDao.insertDeal(new Deal(null,partner.getUser_id(),PARTICIPATE_TASK,red,IdAndTimeUtil.getNewDate()))) {
+										//插入发布者交易数据
+										//userDao.insertDeal(new Deal(null,task.getUser_id(),NkUtlis.PUBLISHING,-task.getTotal_bounty(),IdAndTimeUtil.getNewDate()));
+										return red;
+									}
+									throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update deal error");
+								}
+								throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(),  "update user error");
+							}
+							
+							throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update task error");
+						}
+						throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update partner error");
+					}
+					throw new CommonException(PublicErrorCode.AUTH_EXCEPTION.getIntValue(), "money is negative");
+				} else {
+					//未通过
+					//修改参与者数据
+					if(ERROR < userDao.updatePartner(partner.getPartner_id(),NO_STA, 0.00, partner.getTime())) {
+						return null;
+					}
+					throw new CommonException(PublicErrorCode.UPDATE_EXCEPTION.getIntValue(), "update partner error");
 				}
 				
-				//抽取红包
-				double red = RedUtils.getRed(bounty, surplus);
-				System.out.println(red);
-				bounty=bounty-red;
-				bounty = Double.valueOf(String.format("%.2f", bounty));
-				System.out.println("bounty "+bounty);
-				//修改参与者数据
-				userDao.updatePartner(partner.getPartner_id(),OK_STA, red, String.valueOf(IdAndTimeUtil.getNewDate()));
-				//修改任务表数据
-				userDao.updateTask(bounty, examine.getTaskId(),RELEASE_OK);
-				
-				//修改参与者用户表数据
-				userDao.updateUser(examine.getUserId(),red);
-				//插入参与者交易数据
-				userDao.insertDeal(new Deal(null,partner.getUser_id(),PARTICIPATE_TASK,red,IdAndTimeUtil.getNewDate()));
-				//插入发布者交易数据
-				//userDao.insertDeal(new Deal(null,task.getUser_id(),NkUtlis.PUBLISHING,-task.getTotal_bounty(),IdAndTimeUtil.getNewDate()));
-				return red;
-			} else {
-				//未通过
-				//修改参与者数据
-				userDao.updatePartner(partner.getPartner_id(),NO_STA, 0.00, partner.getTime());
-				return null;
 			}
+			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "query task or query partner is null");
 		}
 		throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "task_id or user_id or stateCode is null");
 	}
