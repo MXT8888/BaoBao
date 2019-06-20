@@ -479,4 +479,21 @@ public class UserDao {
 			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "user_id OR task_id OR Non-existent");
 		}
 	}
+
+	/**  
+	 *<p>查询所有的发布成功还未完结的列表</p> 
+	 * @Title: findBySta    
+	 * @version:V0.1     
+	 * @param releaseOk
+	 * @return:List<Task>
+	 */
+	public List<Task> findBySta(String releaseOk) {
+		String sql ="SELECT `task_id`,`user_id`,`status`,`claim`,`bounty`,`total_bounty`,`red`,"
+				+ "`total_red`,`partner`,`total_partner`,`time` FROM task WHERE `status`=? "
+				+ "ORDER BY time ASC";
+		List<Task> list = jdbcTemplate.query(sql,new Object[] {releaseOk}, (ResultSet rs,int rowNum)->new Task(rs.getLong("task_id"),rs.getLong("user_id"),
+				rs.getString("status"),rs.getString("claim"),rs.getDouble("bounty"),rs.getDouble("total_bounty"),rs.getInt("red"),rs.getInt("total_red"),
+				rs.getInt("partner"),rs.getInt("total_partner"),rs.getString("time")));
+		return list;
+	}
 }

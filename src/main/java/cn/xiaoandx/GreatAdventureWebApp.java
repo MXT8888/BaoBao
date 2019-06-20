@@ -19,6 +19,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**  
  * <p>examinationv3项目启动</p> 
@@ -30,6 +31,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @Copyright: 注意：本内容仅限于学习传阅，禁止外泄以及用于其他的商业目
  */
 @SpringBootApplication
+@EnableScheduling
 public class GreatAdventureWebApp extends SpringBootServletInitializer  {
 
 	public static void main(String[] args) {
