@@ -21,6 +21,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 /**  
  * <p>examinationv3项目启动</p> 
  * @ClassName:ExamV3WebApp   
@@ -31,6 +33,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @Copyright: 注意：本内容仅限于学习传阅，禁止外泄以及用于其他的商业目
  */
 @SpringBootApplication
+@EnableSwagger2
 @EnableScheduling
 public class GreatAdventureWebApp extends SpringBootServletInitializer  {
 

@@ -1,4 +1,4 @@
-package cn.xiaoandx.user.controller;
+  package cn.xiaoandx.user.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -158,8 +158,8 @@ public class UserController implements Parameter {
 	@ApiOperation(httpMethod = "GET", value = "任务记录 查询发布累计数", notes = "任务记录 查询“发布过的任务”界面的总任务数，总金额数，总红包数<br><br>@athor 董泽东<b></b>")
 	public TotalTasks getTasksPublished(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
-		if (userId == null) {
-			return null;
+		if (userId == null || userId <= 0) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "user_id is null or user_id is 0");
 		}
 		return userService.getTasksPublished(userId);
 	}
@@ -173,8 +173,8 @@ public class UserController implements Parameter {
 	@ApiOperation(httpMethod = "GET", value = "任务记录 查询该用户发布的所有任务", notes = "任务记录 查询该用户所有发布的任务<br><br>@athor 董泽东<b></b>")
 	public List<Task> getTask(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
-		if (userId == null) {
-			return null;
+		if (userId == null || userId <= 0) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "user_id is null or user_id is 0");
 		}
 		return userService.getTask(userId);
 	}
@@ -190,8 +190,8 @@ public class UserController implements Parameter {
 	@ApiOperation(httpMethod = "GET", value = "任务记录 查询做过任务统计", notes = "任务记录  查询“做过的任务”界面的总任务数，总领取金额数，总领取红包数<br><br>@athor 董泽东<b></b>")
 	public TotalTasks getPartner(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
-		if (userId == null) {
-			return null;
+		if (userId == null || userId <= 0) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "user_id is null or user_id is <= 0");
 		}
 		return userService.getPartner(userId);
 	}
@@ -205,8 +205,8 @@ public class UserController implements Parameter {
 	@ApiOperation(httpMethod = "GET", value = "任务记录 查询该用户做过的所有任务", notes = "任务记录 查询该用户所有做过的任务<br><br>@athor 董泽东<b></b>")
 	public List<Partner> getPartnerList(@ApiParam(value = "用户Id", required = true) @PathVariable Long userId) {
 		// userId不能为空
-		if (userId == null) {
-			return null;
+		if (userId == null || userId <= 0) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "user_id is null or user_id is <=0");
 		}
 		return userService.getPartnerList(userId);
 	}
@@ -219,6 +219,9 @@ public class UserController implements Parameter {
 	@PostMapping(value = "/getOneTask/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(httpMethod = "POST", value = "任务记录 查询某一个任务详细信息", notes = "任务记录 查询某一个任务详细信息<br><br>@athor 董泽东<b></b>")
 	public Task getOneTask(@ApiParam(value = "任务Id", required = true)  @PathVariable Long taskId) {
+		if (taskId == null || taskId <= 0) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "task_id is null or task_id is <=0");
+		}
 		return userService.getOneTask(taskId);
 	}
 	
@@ -230,6 +233,9 @@ public class UserController implements Parameter {
 	@GetMapping(value = "/getPartnerExamine/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(httpMethod = "GET", value = "审核界面 查询任务下的所有参与者", notes = "审核界面 查询任务下的所有参与者<br><br>@athor 董泽东<b></b>")
 	public List<PartnerList> getPartnerExamine(@ApiParam(value = "任务Id", required = true)  @PathVariable Long taskId){
+		if (taskId == null || taskId <= 0) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "task_id is null or task_id is 0");
+		}
 		return userService.getPartnerExamine(taskId);
 	}
 	
@@ -242,7 +248,10 @@ public class UserController implements Parameter {
 	@PostMapping(value = "/toExamine", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(httpMethod = "POST", value = "审核", notes = "审核接口，在这里需要三个数据，需要将“任务Id、参与者Id,审核是否通过”封装在类里<br><br>@athor 董泽东<b></b>")
 	public Double toExamine(@ApiParam(value = "审核封装数据", required = true) @RequestBody ToExamine examine) {
-		return userService.toExamine(examine);
+		if(examine.getUserId() != null && examine.getUserId() > 0 && null != examine.getTaskId() && examine.getTaskId() > 0 && null != examine.getStateCode()) {
+			return userService.toExamine(examine);
+		}
+		throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "user_id or task_id or stateCode is null ( or <=0 )");
 	}
 	
 	/**
@@ -255,6 +264,9 @@ public class UserController implements Parameter {
 	@ApiOperation(httpMethod = "GET", value = "任务下的参与者信息", notes = "任务下的参与者信息<br><br>@athor 董泽东<b></b>")
 	public Partner partner(@ApiParam(value = "参与者Id", required = true)@RequestParam Long userId,
 			 @ApiParam(value = "任务Id", required = true)@RequestParam Long taskId) {
-		 return userService.Partner(userId, taskId);
+		if(userId <= 0 || taskId <= 0 || userId == null || taskId == null) {
+			throw new CommonException(PublicErrorCode.PARAM_EXCEPTION.getIntValue(), "user_id or task_id is null ( or <=0 )");
+		}
+		return userService.Partner(userId, taskId);
 	 }
 }
