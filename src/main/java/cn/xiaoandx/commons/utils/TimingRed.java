@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.xiaoandx.commons.core.DaoCode;
 import cn.xiaoandx.commons.core.Parameter;
 import cn.xiaoandx.user.dao.UserDao;
+import cn.xiaoandx.user.entity.Partner;
 import cn.xiaoandx.user.entity.Task;
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,38 +61,43 @@ public class TimingRed implements DaoCode, Parameter {
 					Long cTime = IdAndTimeUtil.timeSubtraction(t.getTime(), IdAndTimeUtil.getDate());
 					if (cTime >= SUCCESS) {
 						/*
-						 * || t.getTotal_partner() - t.getPartner() > ZEROUSERID 
+						 * || t.getTotal_partner() - t.getPartner() > ZEROUSERID
 						 * (暂时不加人数的条件，需要该条件时候，还需要判断该任务的所有参与者都已经审核了)
 						 */
-						if (t.getPartner() == ZEROUSERID) {
-							int numberOne = userDao.updateTaskMo(DOUBLE_NUMBER, t.getTask_id(), TASK_END);
-							if (ERROR != numberOne) {
-								int numberTwo = userDao.updateUser(t.getUser_id(), t.getTotal_bounty());
-								if (ERROR != numberTwo) {
-									int numberTh = userDao.addDealByUserId(t.getUser_id(), MISSION_BALANCE,
-											t.getTotal_bounty());
-									if (ERROR != numberTh) {
-										log.info("task " + t.getTask_id() + " success");
-									}else {
-										log.error("Error in update deal table by xiaoandx");
+						if (t.getPartner() == ZEROUSERID || t.getTotal_partner() - t.getPartner() > ZEROUSERID) {
+							List<Partner> listPar = userDao.findParByTaskId(t.getTask_id(), DEFAULT_STA);
+							if (listPar.isEmpty()) {
+								int numberOne = userDao.updateTaskMo(DOUBLE_NUMBER, t.getTask_id(), TASK_END);
+								if (ERROR != numberOne) {
+									int numberTwo = userDao.updateUser(t.getUser_id(), t.getTotal_bounty());
+									if (ERROR != numberTwo) {
+										int numberTh = userDao.addDealByUserId(t.getUser_id(), MISSION_BALANCE,
+												t.getTotal_bounty());
+										if (ERROR != numberTh) {
+											log.info("task " + t.getTask_id() + " success");
+										} else {
+											log.error("Error in update deal table by xiaoandx");
+										}
+									} else {
+										log.error("Failed to update user table by xiaoandx");
 									}
-								}else {
-									log.error("Failed to update user table by xiaoandx");
+								} else {
+									log.error("Failed to update task table by xiaoandx");
 								}
-							}else {
-								log.error("Failed to update task table by xiaoandx");
+							} else {
+								log.info("task " + t.getTask_id() + "  partner not null and sta is daushenghe by xiaoandx");
 							}
-						}else {
+						} else {
 							log.info("task " + t.getTask_id() + " Number of participants by xiaoandx");
 						}
-					}else {
+					} else {
 						log.info("task " + t.getTask_id() + " Less than a day by xiaoandx");
 					}
 				} catch (Exception e) {
 					log.error("Error in calculating time by xiaoandx");
 				}
 			}
-		}else {
+		} else {
 			log.info("list task is null by xiaoandx");
 		}
 	}

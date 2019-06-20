@@ -496,4 +496,23 @@ public class UserDao {
 				rs.getInt("partner"),rs.getInt("total_partner"),rs.getString("time")));
 		return list;
 	}
+
+	/**  
+	 *<p>判断xx任务的审核状况</p> 
+	 * @Title: findParByTaskId    
+	 * @version:V0.1     
+	 * @param task_id
+	 * @param defaultSta
+	 * @return:List<Partner>
+	 */
+	public List<Partner> findParByTaskId(Long task_id, String defaultSta) {
+		try {
+			RowMapper<Partner> rowMapper = new BeanPropertyRowMapper<Partner>(Partner.class);
+			String sql = "SELECT partner_id, user_id, task_id,`status` FROM partner WHERE task_id =?  AND status =?";
+			return jdbcTemplate.query(sql, rowMapper, task_id, defaultSta);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			throw new CommonException(PublicErrorCode.QUERY_EXCEPTION.getIntValue(), "defaultSta OR task_id OR Non-existent");
+		}
+	}
 }
