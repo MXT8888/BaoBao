@@ -69,10 +69,10 @@ public class TimingRed implements DaoCode, Parameter {
 							if (listPar.isEmpty()) {
 								int numberOne = userDao.updateTaskMo(DOUBLE_NUMBER, t.getTask_id(), TASK_END);
 								if (ERROR != numberOne) {
-									int numberTwo = userDao.updateUser(t.getUser_id(), t.getTotal_bounty());
+									int numberTwo = userDao.updateUser(t.getUser_id(), t.getBounty());
 									if (ERROR != numberTwo) {
 										int numberTh = userDao.addDealByUserId(t.getUser_id(), MISSION_BALANCE,
-												t.getTotal_bounty());
+												t.getBounty());
 										if (ERROR != numberTh) {
 											log.info("task " + t.getTask_id() + " success");
 										} else {
