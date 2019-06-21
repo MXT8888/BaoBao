@@ -84,15 +84,11 @@ public class TimingRed implements DaoCode, Parameter {
 								} else {
 									log.error("Failed to update task table by xiaoandx");
 								}
-							} else {
-								log.info("task " + t.getTask_id() + "  partner not null and sta is daushenghe by xiaoandx");
-							}
+							} 
 						} else {
 							log.info("task " + t.getTask_id() + " Number of participants by xiaoandx");
 						}
-					} else {
-						log.info("task " + t.getTask_id() + " Less than a day by xiaoandx");
-					}
+					} 
 				} catch (Exception e) {
 					log.error("Error in calculating time by xiaoandx");
 				}
