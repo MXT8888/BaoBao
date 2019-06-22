@@ -1,0 +1,96 @@
+<view>
+  <view class='head'>
+    <view class="issue {{currentTab == 0 ? 'active':''}} {{bg?'issue-before':'issue'}}" data-current = '0' bindtap='clickIssue'>发布的任务</view>
+    <view class="did {{currentTab == 1 ? 'active':''}} {{bg2?'did':'did-before'}}" data-current = '1' bindtap='clickDid'>做过的任务</view>
+  </view>
+
+  <swiper class='swiper' current='{{currentTab}}' duration='0' bindchange='swiperTab' style='height:{{height}}'>
+    <!-- 发布任务界面 -->
+    <swiper-item class="swiper-item">
+      <view class='top'>
+        <!-- 获取用户头像和昵称 -->
+        <view class='center'>
+          <image src='{{userInfo.avatarUrl}}' class='Img'></image>
+          <view>{{userInfo.nickName}}</view>
+        </view>
+        <view class='wrap'>
+          <view class='font'>
+            <text class='numColor'>{{successList.length}}</text>
+            <text>任务(个)</text>
+          </view>
+          
+          <view class='font'>
+            <view>
+              <text class='numColor big'>{{total_bounty}}</text>
+              <text class='yuan'>元</text>
+            </view>
+            <text>金额</text>
+          </view>
+          <view class='font'>
+            <text class='numColor'>{{total_red}}</text>
+            <text>红包数(个)</text>
+          </view>
+        </view>
+        <view class='bot' bindtap='click'data-task_id="{{item.task_id}}" wx:for="{{successList}}">
+          <view class='bot-center'>
+            <view class='bot-left'>
+              <text class='bot-font'>{{item.claim}}</text>
+              <text class="bot-time">{{item.time}}</text>
+            </view>
+          </view>
+          <view class='bot-center'>
+            <image src='http://47.102.217.131:8080/88/image/end.png' class='end' wx:if="{{item.issueShow}}"></image>
+          </view>
+          <view class='bot-center'>
+            <view class='bot-right'>
+              <text class='red'>{{item.status}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <!-- 做过的任务界面 -->
+    <swiper-item>
+      <view class='top'>
+        <!-- 获取用户头像和昵称 -->
+        <view class='center'>
+          <image src='{{userInfo.avatarUrl}}' class='Img'></image>
+          <view>{{userInfo.nickName}}</view>
+        </view>
+        <view class='wrap'>
+          <view class='font'>
+            <text class='numColor'>{{didList.length}}</text>
+            <text>任务(个)</text>
+          </view>
+          <view class='font'>
+            <view>
+              <text class='numColor big'>{{didtotal_bounty}}</text>
+              <text class='yuan'>元</text>
+            </view>
+            <text>金额</text>
+          </view>
+          <view class='font'>
+            <text class='numColor'>{{didtotal_red}}</text>
+            <text>红包数(个)</text>
+          </view>
+        </view>
+        <view class='bot' bindtap='click' data-task_id="{{item.task_id}}" wx:for="{{didList}}">
+          <view class='bot-center'>
+            <view class='bot-left'>
+              <text class='bot-font'>{{item.note}}</text>
+              <text class="bot-time">{{item.time}}</text>
+            </view>
+          </view>
+          <view class='bot-center'>
+            <image src='http://47.102.217.131:8080/88/image/end.png' class='end' wx:if="{{item.didShow}}"></image>
+          </view>
+          <view class='bot-center'>
+            <view class='bot-right'>
+              <text class='red'>{{item.status}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

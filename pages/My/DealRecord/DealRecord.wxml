@@ -1,0 +1,9 @@
+<view class="recordlist" wx:for="{{recordlist}}" wx:key data-option="{{index}}">
+  <view class="record_names">
+    <view class="names">{{item.content}}</view>
+    <view class="date">{{item.time}}</view>
+  </view>
+  <view class="record_situation_red" wx:if="{{item.show}}" ><view>+{{item.sum}}</view><text>元</text></view>
+  <view class="record_situation" wx:else><view>{{item.sum}}</view><text>元</text></view>
+</view>
+<view class="loading" hidden="{{!requestLoading}}">没有更多了～</view>

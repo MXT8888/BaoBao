@@ -1,0 +1,29 @@
+<view class='app'>
+    <view class='top'>
+        <view class='top_Up'>
+          <view>
+            <image src='{{userInfo.avatarUrl}}' class='userhead'></image>
+            <view class='color' style='font-size:27rpx;font-weight: 400;'>发布了一个大冒险红包</view>
+            <view class='color' style='font-size:45rpx;font-weight: 800;'>完成大冒险即可领取红包</view>
+          </view>
+        </view>
+        <view class='body'>
+          <view class='top_Up_qrcode'>
+            <image src='data:image/png;base64,{{QRcode}}' class='QRcode'></image>
+            <image src='https://hbimg.huabanimg.com/81fa5b0268669256495d3d2c4b5f53c12e0d51bc1980-qnW7aA_fw658' class='fingerprint'></image>
+            <view>长按识别小程序，玩大冒险领红包</view>
+          </view>
+        </view>
+      </view>
+    <view class='bottom'>
+      <button type='' bindtap='img' data-qrcode='{{QRcode}}' style='color:#D5912B'>生成朋友圈图片</button>
+      <button type='primary'bindtap='click'>如何发朋友圈</button>
+    </view>
+  </view>
+  <view  wx:if="{{display}}">
+    <view class='modal'></view>
+    <view class='modal_text'>
+        <view>将红包二维码图片保存到手机，发朋友圈时选择该图片即可</view>
+        <view class='modal-btn' hover-class="modal-btn_hover" bindtap='click'>知道了</view> 
+    </view>
+  </view>

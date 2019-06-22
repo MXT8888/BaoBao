@@ -1,0 +1,11 @@
+<view class="body">
+<!-- 问题 -->
+  <view class="question" wx:for="{{list}}" wx:key>
+    <view class="top" bindtap="isOpen" data-option="{{index}}">
+      <text class="question_left">{{item.question_left}}</text>
+      <text class="open">﹀</text>
+    </view>
+    <!-- 解决问题的方案 -->
+    <view class="answer" wx:if="{{item.hidden}}">{{item.answer}}</view>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<!-- 定义一个容器 -->
+<view class="container" >
+       <!-- 包包大冒险 -->
+    <view class='con1' >
+      <view class='son'  >
+          <image src='../images/logo.png' class='logo'/>
+          <view class="text" bindtap='damaoxian' >
+            <text class='text2' >包包大冒险</text>
+            <text class='text3'>完成任务，获取红包</text>
+          </view>
+      </view>
+    </view>
+      <!-- 多多大冒险 -->   
+  <view class='con2'  bindtap='diandian' >   
+      <view class='son2' >
+        <image src='../images/logo.png'  class='logo'/>
+        <view class="text" >
+            <text class='text2'>多多大冒险</text>
+            <text class='text3'>完成任务，获取红包</text>
+          </view>
+      </view>
+  </view>
+        <!-- 奇卡大冒险 -->   
+  <view class='con3' bindtap='diandian' >   
+      <view class='son3' >
+        <image src='../images/logo.png'  class='logo'/>
+        <view class="text" >
+            <text class='text2'>奇卡大冒险</text>
+            <text class='text3'>完成任务，获取红包</text>
+          </view>
+      </view>
+  </view>
+        <!-- 其他大冒险 -->   
+  <view class='con4' bindtap='diandian' >   
+      <view class='son4' >
+        <image src='../images/logo.png'  class='logo'/>
+        <view class="text" >
+            <text class='text2'>其他大冒险</text>
+            <text class='text3'>完成任务，获取红包</text>
+          </view>
+      </view>
+  </view>
+</view>
+   

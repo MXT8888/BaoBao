@@ -1,0 +1,30 @@
+<!--pages/participant/task_content/task_content.wxml-->
+<view class='body'>
+  <view class='top'>
+    <view class='hongbaoedu'>{{sum_money}}</view>
+    <view class='Redenvelopes'>
+      <text class='topzi'>{{task}}</text>
+    </view>
+  </view>
+  <view class='bottom'>
+    <view class='zbj'>任务图片</view>
+    <view class='Taskpicture'>
+      <view class='dibian'>
+       <image src='{{imageURL}}' wx:if="{{!pd}}" ></image>
+        <view  class='add' catchtap='upload_photo' wx:if="{{pd}}">{{photo}}</view>
+      </view>
+      <view class='clearfix'>
+        <view class='dibian'>添加文字
+          <input placeholder='最多十五个文字' value='{{name}}' bindinput='formName'></input>
+        </view>
+      </view>
+      <view>向所有参与者公开照片
+        <view class="but">
+          <switch checked bindchange="switch1Change" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <button catchtap='add_photo'>上传照片</button>
+</view>
+<view class='delete' wx:if="{{!pd}}" catchtap='delete_photo'>×</view>

@@ -1,0 +1,77 @@
+page{
+  background-color: #f5f5f5;
+}
+.recordlist {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-bottom: 1px solid #f5f5f5;
+}
+.record_situation_red{
+  height: 150rpx;
+  line-height: 150rpx;
+  color: red;
+  font-size: 42rpx;
+  display: flex;
+  flex-direction: row;
+}
+.record_situation_red view {
+  height: 150rpx;
+  line-height: 150rpx;
+  font-size: 42rpx;
+  width: 250rpx;
+  text-align: right;
+  margin-right: 10rpx;
+}
+.record_situation_red text {
+  display: block;
+  height: 150rpx;
+  line-height: 150rpx;
+  font-size: 42rpx;
+  width: 40rpx;
+}
+.record_names {
+  padding-left: 5%;
+  width: 50%;
+  padding-bottom: 2%;
+}
+.record_names .names {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 40rpx;
+}
+.record_names .date {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  color: #aaa;
+}
+.record_situation {
+  height: 150rpx;
+  line-height: 150rpx;
+  color: #000;
+  font-size: 42rpx;
+  display: flex;
+  flex-direction: row;
+}
+.record_situation view {
+  height: 150rpx;
+  line-height: 150rpx;
+  font-size: 42rpx;
+  width: 250rpx;
+  text-align: right;
+  margin-right: 10rpx;
+}
+.record_situation text {
+  display: block;
+  height: 150rpx;
+  line-height: 150rpx;
+  font-size: 42rpx;
+  width: 40rpx;
+}
+.loading {
+  text-align: center;
+  height: 200rpx;
+  line-height: 200rpx;
+  color: #aaa;
+}

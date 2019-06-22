@@ -1,0 +1,21 @@
+<view class='head'>
+  <text class='task'>{{task}}</text>
+  <view class='state'>
+    <text>待审核</text>
+  </view>
+  <button catchtap='tiao'>我也要发一个</button>
+</view>
+
+<view class='redpage'>共{{sum_money}}元，已领取{{receive_page}}/{{sum_page}}个</view>
+<view class='get_page'>
+  <view class='other_prople'>
+ <view class='partner' wx:key="{{index}}" wx:for="{{partner}}" wx:for-item="item">
+      <image class='headimg' src='{{item.head_portrait}}'></image>
+     <text class='node'>{{item.note}}</text>
+    
+      <image class='image' src='{{item.image_url}}'></image>
+      <button class='examine'>{{item.status}}
+      </button>
+    </view>
+  </view>
+</view>

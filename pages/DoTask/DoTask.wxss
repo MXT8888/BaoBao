@@ -1,0 +1,84 @@
+/* pages/participant/participant.wxss */
+page{
+  height: 100%;
+  background: #F5F5F5;
+
+}
+.head{
+  height: 40%;
+  background: #DC3A2F;
+
+  text-align: center;
+  line-height: 300rpx;
+
+}
+.head text{
+  color: #EECC9C;
+  font-size: 40rpx;
+  font-family: "微软黑体"
+}
+.head button{
+  width: 80%;
+  background: #EECC9C;
+  color: #DC3A2F;
+  font-weight: 700
+
+}
+.redpage{
+  height: 5%;
+  background: #f0f0f0;
+  color: #B9B9B9;
+}
+.other_prople{
+  height: 25%;
+  border: 1px  solid  #F5F5F5;
+  border-bottom-color:#B9B9B9 ;
+}
+
+.partner {
+  border-bottom: 1px solid #fefefe;
+  height: 150rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.node {
+  width: 200rpx;
+  display: inline-block;
+  color: #8d8d8d;
+  margin-left: 25rpx;
+  margin-right: 50rpx;
+  line-height: 150rpx;
+}
+
+.headimg {
+  margin-top: 25rpx;
+  margin-left: 25rpx;
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-top: 15rpx;
+  border: 1px solid #c1c1c1;
+}
+
+.tasks {
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+}
+
+.examine {
+  margin-top: 25rpx;
+  text-align: center;
+  font-size: 35rpx;
+  width: 150rpx;
+  height: 100rpx;
+  line-height: 90rpx;
+  border: 2px solid #dc3a2f;
+  color: #dc3a2f;
+}

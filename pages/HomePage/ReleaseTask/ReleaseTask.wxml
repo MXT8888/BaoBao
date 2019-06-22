@@ -1,0 +1,46 @@
+<view class='container'>
+<!-- 定义一个容器 -->  
+  <view class='cover'>
+     <view class='bao'>包包大冒险</view>
+     <!-- 用户头像信息设置 -->
+     <open-data class="open-data-userAvatarUrl" type="userAvatarUrl"></open-data>
+  </view>
+  <!-- 中间部分 -->
+  <view class='body'>
+    <!-- 中上部分属性设置 -->
+    <view class='both'>
+      <!-- 任务要求 -->
+      <view class='renwu'>
+        <view class='yaoqiu'>任务要求</view>
+        <view class='shuru'>
+          <input placeholder='请输入文字（24字内）'  bindinput="renwuyaoqiu" ></input>
+          <view>
+            <image src='../../images/xiangqing.png' style='width:50rpx;height:50rpx;margin-left:30rpx;'></image>
+            </view>
+        </view>
+      </view>
+      <!--文本属性一  -->
+      <view class='text1'>小伙伴们任务通过即可领取随机金额的红包</view>
+      <!-- 总赏金 -->
+      <view class='shangjin'>
+        <view class='yaoqiu'>总赏金</view>
+        <view class='shuru2'>
+          <input placeholder='填写金额' bindinput="zongjine"  ></input>
+          <view style='margin-left:35rpx;' >元</view>
+        </view>
+      </view>
+      <!-- 红包属性 -->
+      <view class='hongbao'>
+        <view class='yaoqiu'>红包数</view>
+          <view class='shuru2'>
+            <input placeholder='填写红包数量' bindinput="hongbaoshu"  ></input>
+            <view style='margin-left:35rpx;'>个</view>
+          </view>
+        </view>
+      <view class='text1'>红包个数即为可做任务的最多人数</view>
+    </view>
+    <!-- 发布任务按钮 -->
+    <button class='loginBtnClick' bindtap="loginBtnClick" >发布任务</button>
+    <view class='text2'>赏金上限200元，红包个数上限100个，平台收取1%的服务费</view>
+  </view>
+</view>

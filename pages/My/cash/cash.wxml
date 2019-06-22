@@ -1,0 +1,12 @@
+<view class="money_top">
+  <view class="my">我的余额</view>
+  <view class="how_many"><text style="font-size: 64rpx;">310.00</text>元</view>
+</view>
+<input type='text' class="input_text" placeholder="输入需要提现的金额" name='says'/>
+<view class="tips">
+  <view class="tip">提现到微信钱包</view>
+  <view class="all_cash">全部提现</view>
+</view>
+<button class="carry" bindtap="gotoCash">提现</button>
+<view class="tip_carry">单笔提现金额最低1元</view>
+<view class="question" bindtap="gotoUsualprob">常见问题</view>

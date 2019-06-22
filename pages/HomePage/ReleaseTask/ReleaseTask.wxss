@@ -1,0 +1,114 @@
+/* 页面背景色 */
+page{
+  background-color: #f5f5f5;
+}
+/* 定义一个容器 */
+.cover{
+  width: 1250rpx;
+  height: 1250rpx;
+  border-radius: 50%;
+  float: left;
+  background-color: #dc3a2f;
+  margin-top: -950rpx;
+  margin-left: -250rpx;
+}
+/*宝宝打冒险文字属性设置 */
+.bao{
+  color: white;
+  text-align: center;
+  margin-top: 950rpx;
+}
+/* 头像属性设置 */
+.open-data-userAvatarUrl {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+  margin-top: 170rpx;
+  border-radius: 50%;
+}
+/* 中间属性设置 */
+.body{
+  width: 700rpx;
+  height: 1000rpx;
+  margin: 0 auto;
+  border-radius: 2%;
+  background-color: #fff;
+  box-shadow:0px 2px 5px 5px rgb(199, 199, 199);
+}
+/* 中间上半部分属性设置 */
+.both{
+  margin-left: 30rpx;
+  padding-top: 400rpx;
+}
+/*任务属性 */
+.renwu{
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 0 0 0;
+}
+/* 要求属性 */
+.yaoqiu{
+  width: 25%;
+}
+/* 输入框文本属性 */
+.shuru{
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  margin-left: 20rpx;
+  border-bottom: 0.2px solid #ccc;
+}
+/* 总赏金 */
+.shangjin{
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+}
+/* 输入二框文本属性 */
+.shuru2{
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  margin-left: 20rpx;
+  border-bottom: 0.2px solid #ccc;
+}
+/* 图片 */
+image{
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+/* 文本属性一 */
+.text1{
+  margin-top: 10rpx;
+  font-size: 13px;
+  color: #ccc;
+}
+/* 红包属性设置 */
+.hongbao{
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0 0 0;
+}
+/* 任务发布按钮设置 */
+button{
+  width: 350px;
+  margin: 20px auto;
+  background-color: #dc3a2f;
+  color: white;
+}
+/* 文本二属性设置 */
+.text2{
+  font-size: 12px;
+  color: #ccc;
+  text-align: center;
+}
+/* 发布任务按钮 */
+.loginBtnClick{
+   width: 600rpx;
+   margin: 0rpx auto ;
+   margin-top: 20rpx;
+   margin-bottom: 20rpx;
+}

@@ -1,0 +1,103 @@
+/* pages/issue/issue.wxss */
+.head{
+  display: flex;
+  justify-content: space-between;
+  height:85rpx;
+  padding-top:50rpx;
+}
+.issue{
+  margin-left: 100rpx;
+  color: black
+}
+.issue-before{
+  margin-left: 100rpx;
+  color: red;
+  border-bottom:2px solid red;
+}
+.did{
+  margin-right: 100rpx;
+}
+.did-before{
+  margin-right: 100rpx;
+  color: red;
+  border-bottom:2px solid red;
+}
+.Img{
+  width:160rpx;
+  height:160rpx;
+  display:inline-block;
+  overflow:hidden;
+  border-radius:50%;
+}
+swiper {
+  display:block;
+  background-color:#eee;
+}
+.center{
+  text-align: center;
+}
+.wrap{
+  display: flex;
+  justify-content:space-around;
+  padding-top:40rpx;
+  padding-bottom:40rpx;
+}
+.font{
+  display: flex;
+  flex-direction: column;
+  text-align: center
+}
+.top{
+  margin-top: 80rpx;
+}
+.bot-left{
+  float: left;
+  display:flex;
+  flex-direction:column;
+  padding-left:20rpx;
+}
+.bot-right{
+  float: right;
+  padding-right:20rpx;
+}
+.bot{
+  width: 700rpx;
+  height: 150rpx;
+ 
+  background-color:white;
+  border:1px solid #ccc;
+  margin:0 auto;
+  padding-top:10rpx; 
+  margin-top: 10rpx;
+  display:flex;
+  justify-content: space-between;
+  border-radius: 10rpx
+}
+.bot-center{
+  display: flex;
+  align-items: center
+}
+.red{
+  color: red
+}
+.bot-time{
+  color:#aaa;
+  font-size:15px;
+  line-height:2;
+}
+.bot-font{
+  font-size:20px;
+}
+.numColor{
+  color: red;
+  font-size:50rpx;
+}
+.end{
+  width: 100rpx;
+  height: 100rpx;
+  margin-left:-70%;
+}
+.yuan{
+  font-size: 25rpx;
+  color: red;
+}

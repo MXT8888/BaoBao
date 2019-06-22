@@ -1,0 +1,11 @@
+<view class='mian'>
+  <view class='header'></view>
+  <view class='content'>
+    <canvas style="width: 100%; height:500px;" canvas-id="secondCanvas" binderror="canvasIdErrorCallback" id='secondCanvas'></canvas>
+    <view class='btn'>
+      <button type=''  bindtap='save' class='save'>保存到手机</button>
+      <button type='primary' open-type='share' bindtap='click'>分享给朋友</button>
+    </view>
+   </view>
+</view>
+

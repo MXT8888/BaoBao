@@ -1,0 +1,29 @@
+/* 定义一个容器 */
+.container{
+  height: 1220rpx;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  background: url('http://d-paper.i4.cn/max/2018/03/01/14/1519885484166_364243.JPG')  ;
+  background-size: 100% 100%;
+}
+/* 显示信息和按钮的布局方式 */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* 授权按钮图片 */
+.Logoo{
+  margin: 100rpx 0rpx 0rpx 0rpx;
+  width:300rpx;
+  height:300rpx;
+  animation:myfirst 1.5s;
+  position: relative;
+}
+/* 动画效果 */
+@keyframes myfirst
+{
+0%   { left:0; top:100vh;}
+100% { left:0px; top:0px;}
+}

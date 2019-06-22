@@ -1,0 +1,51 @@
+
+#secondCanvas{
+  position: absolute;
+  z-index: -1;
+}
+.btn{
+  position: absolute;
+  bottom: 50rpx;
+  z-index: 10;
+  width: 100%;
+  
+}
+.modal{
+ 
+  width: 100vh;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #555555;
+  opacity: 0.8;
+}
+.modal_text{
+  text-align: center;
+  width: 600rpx;
+  position: absolute;
+  top: 388rpx;
+  left: 77rpx;
+  background-color: white;
+  opacity: 1;
+  font-size: 35rpx;
+  color: #555555;
+}
+.modal_text view{
+  padding: 30rpx;
+  border-bottom: 2rpx solid #55555548;
+}
+.modal-btn{
+   z-index: 10000;
+  font-weight: 600;
+  color: green;
+}
+.modal-btn_hover{
+  background-color: #cad4ce;
+}
+.save{
+  background-color: rgb(215, 226, 61);
+  color: white;
+  margin-bottom: 30rpx;
+}
+/* pages/redPacket/redPacket.wxss */

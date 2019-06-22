@@ -1,0 +1,15 @@
+<!-- 定义一个容器 -->
+<view class="container" style='{{  isIpx ?   "height: 1372rpx" :   "height: 100vh"}}'>
+    <!-- 授权后看到的消息 -->
+    <view class="userinfo" wx:if="{{isLogin}}">
+    </view>
+    <!-- 需要使用 button 来授权登录 -->
+    <view class="userinfo" wx:else>
+      <!-- 点击Logo进行大冒险 -->
+      <button plain='false' style='border:0rpx;'  size="mini" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+        <!--Logo图片  -->
+        <image  class='Logoo' src="../../images/Logoo.png"  />
+      </button>
+        <view wx:else>请升级微信版本</view>
+     </view>
+</view>

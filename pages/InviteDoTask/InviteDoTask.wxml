@@ -1,0 +1,45 @@
+<!-- 定义一个容器 -->
+<view class='center'>
+  <!-- 首行文本属性设置 -->
+  <view class='content'>
+    <text style='margin-top:-20rpx;' >{{taskInfo.claim}}</text>
+  </view>
+  <!-- 金额属性设置 -->
+  <view class='money'>{{taskInfo.bounty}}<text style='font-size:40rpx;'>元</text></view>
+  <!-- 红包个数+任务人数 -->
+  <view class='number'>
+    <text class='RedNum'>红包个数：{{taskInfo.red}}/{{taskInfo.total_red}}个</text>
+    <text class='TaskNum'>任务人数：{{taskInfo.partner}}/{{taskInfo.total_partner}}人</text>
+  </view>
+  <!--邀请做任务Click  -->
+  <view class='invite' bindtap='click' wx:if="{{btn}}"> 邀请做任务</view>
+  <view class='invite' wx:else>{{taskInfo.sta}}</view>
+</view>
+<view>
+  <view style='font-size:30rpx; color:#bcbcbc;text-align: center;margin:30rpx;' >未被领取的红包,24小时后退回至微信小程序余额</view>
+  <!-- 用户信息属性设置 -->
+  <view class='wrap' wx:for="{{participant}}">
+    <!-- 用户头像 --> 
+    <image src='{{item.head_portrait}}' class='header'></image>
+    <!-- 用户的照片描述 -->
+    <view class='font'>
+      <text bindtap='TaskContent' data-text='{{taskContent}}'>{{item.nick_name}}</text>
+    </view>
+    <!-- 用户上传的照片 -->
+    <view class='PhotoV'>
+      <image src='{{item.image_url}}' class='photo' bindtap='TaskContent' data-img_url='{{item.image_url}}'></image>
+    </view>
+    <!-- 审核状态 -->
+    <view class='right' bindtap='{{hint}}' wx:if="{{item.hint}}" data-user_id='{{item.user_id}}' data-click_task_id='{{item.task_id}}' data-index='{{index}}'>审核</view>
+    <view class='right' wx:else>{{item.status}}</view>
+    <!-- 显示审核是否通过 -->
+    <view wx:if="{{resultDisplay}}" class='result'>{{result}}</view>
+  </view>
+</view>
+<!-- 模态窗，点击审核后弹出 -->
+  <view wx:if="{{display}}" class='TopCenter'>
+    <view class='pass' bindtap='close' data-text='{{text}}'>{{text}}</view>
+    <view class='NoPass' bindtap='close' data-text='{{textNo}}'>{{textNo}}</view>
+  </view>
+  <view style='width:{{windowWidth}}px;height:{{windowHeight}}px' class='empty' wx:if="{{display}}">
+  </view>

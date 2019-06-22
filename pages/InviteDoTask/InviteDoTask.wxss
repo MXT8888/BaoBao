@@ -1,0 +1,130 @@
+/* 定义一个容器 */
+.center{
+  background-color: #dc3a2f;
+  line-height: 2;
+  padding-bottom: 40rpx;
+}
+/* 首行文本属性设置 */
+.content{
+  text-align: center;
+  width:70%;
+  line-height: 60rpx;
+  margin:0 auto;
+  color: #eecc9c;
+  font-size:40rpx;
+}
+/* 金额属性设置 */
+.money{
+  text-align: center;
+  color: #eecc9c;
+  font-size:90rpx;
+}
+/* 红包个数和任务人数属性设置 */
+.number{
+  display: flex;
+  justify-content: space-around;
+  color: #f9fdf6;
+  font-size:30rpx;
+}
+/* 邀请做任务按钮 */
+.invite{
+  width: 85%;
+  height: 90rpx;
+  border:0rpx ;
+  line-height:90rpx;
+  text-align:center;
+  margin: 0 auto;
+  color: red;
+  margin-top: 30rpx;
+  border-radius:15rpx;
+  background-color: #eecc9c;
+}
+/* 用户信息的描述 */
+.font{
+  margin-left:-10%;
+  font-size:30rpx;
+  color:#999;
+  line-height:120rpx;
+  height:120rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  width:23%;
+}
+/* 用户头像 */
+.header{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%
+}
+/* 用户上传的照片属性设置 */
+.PhotoV{
+  margin-left: -10%
+}
+/* 用户上传的照片 */
+.photo{
+  width: 100rpx;
+  height: 100rpx;
+}
+/* 用户信息属性设置 */
+.wrap{
+  display: flex;
+  justify-content: space-around;
+  height:120rpx;
+  margin-top:35rpx;
+  border-bottom:1px solid #bbb;
+  align-items:center;
+}
+/* 审核状态属性设置 */
+.right{
+  border: 1px solid red;
+  width:110rpx;
+  height:60rpx;
+  line-height:60rpx;
+  text-align:center;
+  font-size:30rpx;
+  color:red;
+  border-radius:10rpx;
+}
+/* 模态框属性设置 */
+.TopCenter{
+  width: 50%;
+  height:300rpx;
+  margin:0 auto;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  margin-top:-50%;
+}
+/*通过  */
+.pass{
+  font-size: 40rpx;
+  background-color:rgb(24, 204, 0);
+  color:white;
+  height:30%;
+  line-height:90rpx;
+  border-radius: 30rpx;
+}
+/* 未通过 */
+.NoPass{
+  font-size: 40rpx;
+  background-color:rgb(170, 0, 0);
+  color:white;
+  height:30%;
+  line-height:90rpx;
+  border-radius: 30rpx;
+  margin-top: 20rpx;
+}
+/* 模态框弹出 */
+.empty{
+  background-color: black;
+  position:relative;
+  z-index:2;
+  margin-top:-100%;
+  opacity: 0.5
+}
+/*  */
+.result{
+  font-size: 30rpx;
+  color: #999
+}

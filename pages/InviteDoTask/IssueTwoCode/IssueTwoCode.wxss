@@ -1,0 +1,81 @@
+/* pages/share/share.wxss */
+.top{
+  background-color: #c63329;
+  margin: 40rpx;
+  color: white;
+  height: 888rpx;/* 不要问我为什么是888，告诉你不仅仅是吉利，而且是刚好满足页面需求 */
+}
+.top_Up{
+  height: 380rpx;
+  text-align: center;
+  background-color: #dc3a2f;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+
+}
+.userhead{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.QRcode{
+  width: 300rpx;
+  height: 300rpx;
+}
+.top_Up_qrcode{
+  display: flex;
+  align-items:center;
+  flex-direction:column;
+  justify-content:center;
+  padding: 40rpx;
+}
+.top_Up_qrcode view{
+  margin: 10rpx;
+  font-size: 26rpx;
+  color: white;
+}
+.fingerprint{
+  margin: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.body{
+  position: absolute;
+  top: 288rpx;
+  left: 142rpx;
+}
+.modal{
+  width: 100vh;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #555555;
+  opacity: 0.8;
+}
+.modal_text{
+  text-align: center;
+  width: 600rpx;
+  position: absolute;
+  top: 388rpx;
+  left: 77rpx;
+  background-color: white;
+  opacity: 1;
+  font-size: 35rpx;
+  color: #555555;
+}
+.modal_text view{
+  padding: 30rpx;
+  border-bottom: 2rpx solid #55555548;
+}
+.modal-btn{
+  font-weight: 600;
+  color: green;
+}
+.modal-btn_hover{
+  background-color: #cad4ce;
+}
+.bottom button{
+  margin-bottom: 30rpx;
+}
