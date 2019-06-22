@@ -1,8 +1,9 @@
 sys:
   version: 1.0.0
 weixings:
-  appId: wxe3ab9e4a9e5b3c00
-  appSecurity: e780fad35e15d943566cebed72779baf
+  appId: wx15916239153a9bc1
+  appSecurity: b9bbc2bad06848211b162c137c3d4715
+
 qinliu: 
   accessKey: 7mYw774OhImScvEks6XR3TAtSp87P68_oiUbfcMb
   secretKey: fJUdt_T7pX_Vib-Y-BlpKtl2JT7tet1xl2PDq8O2
@@ -20,7 +21,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/great_adventure_db?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=UTC
     username: root
-    password: 2324671838
+    password: root
     hikari:
       auto-commit: false
       minimum-idle: 2
